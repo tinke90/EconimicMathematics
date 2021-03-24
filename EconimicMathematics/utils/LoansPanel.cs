@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace EconimicMathematics.utils
 {
-    class Loans
+    class LoansPanel
     {
         
         private string inputField_1 = "";
@@ -15,7 +15,7 @@ namespace EconimicMathematics.utils
         private string resultField = "";
 
 
-        public Loans(ToolTip _tooltip)
+        public LoansPanel(ToolTip _tooltip)
         {
             tooltip = _tooltip;
         }

@@ -70,15 +70,15 @@
     <Compile Include="utils\ContainSymbols.cs" />
     <Compile Include="utils\DecimalPointer.cs" />
     <Compile Include="utils\drag\Drag.cs" />
-    <Compile Include="utils\Loans.cs" />
+    <Compile Include="utils\LoansPanel.cs" />
     <Compile Include="utils\net_salary\CalculateNetSalary.cs" />
     <Compile Include="utils\paid_tax\CalculatePaidTax.cs" />
     <Compile Include="utils\paid_tax\CalculateTotalPaidTax.cs" />
     <Compile Include="utils\RemoveSymbols.cs" />
     <Compile Include="utils\tax_rate\CalculateTaxRate.cs" />
     <Compile Include="utils\Textfield.cs" />
-    <Compile Include="utils\InvestmentCalculation.cs" />
-    <Compile Include="utils\vat\CalculatingOfVat.cs" />
+    <Compile Include="utils\InvestmentCalculationPanel.cs" />
+    <Compile Include="utils\vat\CalculatingOfVatPanel.cs" />
     <EmbeddedResource Include="Customized.resx">
       <DependentUpon>Customized.cs</DependentUpon>
     </EmbeddedResource>

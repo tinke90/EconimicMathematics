@@ -366,8 +366,8 @@ namespace EconimicMathematics.utils
                         "Montako prosenttia asiakasmäärä kasvoi");
 
                     reloadInputFieldToolTips(
-                        "Syötä asiakasmäärä X pienempi kuin asiakasmäärä Y",
-                        "Syötä asiakasmäärä Y suurempi kuin asiakasmäärä X",
+                        "Syötä asiakasmäärä X suurempi kuin asiakasmäärä Y",
+                        "Syötä asiakasmäärä Y pienempi kuin asiakasmäärä X",
                         "Asiakasmäärän ero prosentteina");
 
                     rtb_explanation.Text = Explanations.GetExplanation(7);
@@ -379,8 +379,8 @@ namespace EconimicMathematics.utils
                         "Montako prosenttia vähemmän Joonalla on rahaa");
 
                     reloadInputFieldToolTips(
-                        "Syötä summa X pienempi kuin summa Y",
-                        "Syötä summa Y suurempi kuin summa X",
+                        "Syötä summa X suurempi kuin summa Y",
+                        "Syötä summa Y pienempi kuin summa X",
                         "Summan prosentuaalinen ero prosentteina");
 
                     rtb_explanation.Text = Explanations.GetExplanation(8);
@@ -430,8 +430,8 @@ namespace EconimicMathematics.utils
                 else if(cb_mathAlgorithmType.SelectedIndex == 12)
                 {
                     SetCurrentFieldValues("Sovellus - Hinnan alennus", "0%", "0", "0.00€");
-                    reloadDescriptionToolTip(" Alennusmyynnissä tuotteen hintaa alennetaan ensin 20 % ja sitten vielä 25 %.\n" +
-                        "Laske tuotteen lopullinen hinta, kun se ennen alennuksia on 129,55 €." +
+                    reloadDescriptionToolTip("Alennusmyynnissä tuotteen hintaa alennetaan ensin 20 % ja sitten vielä 25 %.\n" +
+                        "Laske tuotteen lopullinen hinta, kun se ennen alennuksia on 129,55 €.\n" +
                         "Esimerkki 2. Vuokra on noussut ensin 2 % ja sitten vielä 7 %. Montako euroa vuokra kokonaisuudessaan nousi,\n" +
                         "kun lopullinen vuokra oli 835,30 €");
 

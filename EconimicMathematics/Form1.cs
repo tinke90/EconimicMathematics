@@ -24,9 +24,9 @@ namespace EconimicMathematics
     {
         BasicPercentageCalculationsPanel basicPercentagePanel;
         CalculatingOfIncomeTaxPanel calculatingOfIncomeTaxPanel;
-        CalculatingOfVat calculatingOfVatPanel;
-        InvestmentCalculation investmentPanel;
-        Loans loansPanel;
+        CalculatingOfVatPanel calculatingOfVatPanel;
+        InvestmentCalculationPanel investmentPanel;
+        LoansPanel loansPanel;
 
         private string inputField_1 = "";
         private string inputField_2 = "";
@@ -82,17 +82,17 @@ namespace EconimicMathematics
             calculatingOfIncomeTaxPanel.InitializeComponents();
             calculatingOfIncomeTaxPanel.Visible = false;
 
-            calculatingOfVatPanel = new CalculatingOfVat(tooltip);
+            calculatingOfVatPanel = new CalculatingOfVatPanel(tooltip);
             pl_background.Controls.Add(calculatingOfVatPanel.LoadPanel());
             calculatingOfVatPanel.InitializeComponents();
             calculatingOfVatPanel.Visible = false;
 
-            investmentPanel = new InvestmentCalculation(tooltip);
+            investmentPanel = new InvestmentCalculationPanel(tooltip);
             pl_background.Controls.Add(investmentPanel.LoadPanel());
             investmentPanel.InitializeComponents();
             investmentPanel.Visible = false;
 
-            loansPanel = new Loans(tooltip);
+            loansPanel = new LoansPanel(tooltip);
             pl_background.Controls.Add(loansPanel.LoadPanel());
             loansPanel.InitializeComponents();
             loansPanel.Visible = false;

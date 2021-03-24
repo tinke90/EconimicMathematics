@@ -186,32 +186,5 @@ namespace EconimicMathematics.utils.basic_percentage_calculation
             return output;
         }
 
-        private static string GetExplanation_10()
-        {
-            string output = "";
-
-            //###########################################################################
-
-            return output;
-        }
-
-        private static string GetExplanation_11()
-        {
-            string output = "";
-
-            //###########################################################################
-
-            return output;
-        }
-
-        private static string GetExplanation_12()
-        {
-            string output = "";
-
-            //###########################################################################
-
-            return output;
-        }
-
     }
 }

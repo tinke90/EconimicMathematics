@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace EconimicMathematics.utils.vat
 {
-    class CalculatingOfVat
+    class CalculatingOfVatPanel
     {
         private int merchandise = 10;
         private int foods = 14;
@@ -41,7 +41,7 @@ namespace EconimicMathematics.utils.vat
         private Label lb_netPrice;
         private TextBox tf_netPrice;
 
-        public CalculatingOfVat(ToolTip _tooltip)
+        public CalculatingOfVatPanel(ToolTip _tooltip)
         {
             tooltip = _tooltip;
         }

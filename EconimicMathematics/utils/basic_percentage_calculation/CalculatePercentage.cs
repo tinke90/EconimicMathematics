@@ -113,8 +113,7 @@ namespace EconimicMathematics.utils
             percentage = percentage + 100;
             percentage = GetPercentage(percentage);
             
-
-            double result = value / percentage;
+            double result = value * percentage;
 
             return result;
         }

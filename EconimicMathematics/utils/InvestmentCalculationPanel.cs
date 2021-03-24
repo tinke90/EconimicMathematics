@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace EconimicMathematics.utils
 {
-    class InvestmentCalculation
+    class InvestmentCalculationPanel
     {
         private int nextYear = 0;
 
@@ -16,7 +16,7 @@ namespace EconimicMathematics.utils
         private string resultField = "";
 
 
-        public InvestmentCalculation(ToolTip _tooltip)
+        public InvestmentCalculationPanel(ToolTip _tooltip)
         {
             tooltip = _tooltip;
         }
