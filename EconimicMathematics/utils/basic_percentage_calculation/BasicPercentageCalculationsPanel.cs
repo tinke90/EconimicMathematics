@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EconimicMathematics.utils.basic_percentage_calculation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace EconimicMathematics.utils
         private TextBox tf_1_percentage_1;
         private ComboBox cb_mathAlgorithmType;
         private Button bt_loadMathAlgorithm;
+        private Panel pnl_explanationPanel;
+        private RichTextBox rtb_explanation;
 
         ToolTip tooltip;
 
@@ -59,10 +62,12 @@ namespace EconimicMathematics.utils
             this.cb_mathAlgorithmType = new ComboBox();
             this.bt_calculate = new Button();
             this.bt_loadMathAlgorithm = new Button();
+            this.pnl_explanationPanel = new Panel();
+            this.rtb_explanation = new RichTextBox();
             // 
             // pnl_taxRate
             // 
-            this.pnl_taxRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_taxRate.BorderStyle = BorderStyle.FixedSingle;
             this.pnl_taxRate.Controls.Add(this.bt_loadMathAlgorithm);
             this.pnl_taxRate.Controls.Add(this.cb_mathAlgorithmType);
             this.pnl_taxRate.Controls.Add(this.lb_equals_1);
@@ -71,11 +76,36 @@ namespace EconimicMathematics.utils
             this.pnl_taxRate.Controls.Add(this.tf_1_number_1);
             this.pnl_taxRate.Controls.Add(this.tf_1_percentage_1);
             this.pnl_taxRate.Controls.Add(this.bt_calculate);
+            this.pnl_taxRate.Controls.Add(this.pnl_explanationPanel);
             this.pnl_taxRate.ForeColor = System.Drawing.Color.Black;
             this.pnl_taxRate.Location = new System.Drawing.Point(12, 105);
             this.pnl_taxRate.Name = "pnl_taxRate";
             this.pnl_taxRate.Size = new System.Drawing.Size(868, 420);
             this.pnl_taxRate.TabIndex = 8;
+            // 
+            // pnl_taxTable
+            // 
+            this.pnl_explanationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.pnl_explanationPanel.Controls.Add(this.rtb_explanation);
+            this.pnl_explanationPanel.Location = new System.Drawing.Point(464, 12);
+            this.pnl_explanationPanel.Name = "pnl_explanationPanel";
+            this.pnl_explanationPanel.Size = new System.Drawing.Size(391, 396);
+            this.pnl_explanationPanel.TabIndex = 65;
+            // 
+            // tf_explanation
+            // 
+            this.rtb_explanation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rtb_explanation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rtb_explanation.ForeColor = System.Drawing.Color.White;
+            this.rtb_explanation.Location = new System.Drawing.Point(12, 12);
+            this.rtb_explanation.Name = "tf_1_number_1";
+            this.rtb_explanation.Size = new System.Drawing.Size(367, 372);
+            this.rtb_explanation.Font = new System.Drawing.Font("Arial", 12);
+            this.rtb_explanation.TabIndex = 47;
+            this.rtb_explanation.Text = "Selite sille kuinka tiettyä kaavaa\n" +
+                "käytetään ja missä tapauksissa.";
+            this.rtb_explanation.BorderStyle = BorderStyle.None;
+            this.rtb_explanation.ReadOnly = true;
             // 
             // lb_equals_1
             // 
@@ -195,7 +225,7 @@ namespace EconimicMathematics.utils
         {
             cb_mathAlgorithmType.Items.Add("Laske prosentit luvusta");
             cb_mathAlgorithmType.Items.Add("Kuinka monta prosenttia X on Y:stä");
-            cb_mathAlgorithmType.Items.Add("Laske perusarvo");
+            cb_mathAlgorithmType.Items.Add("Alkuperäisen arvon laskeminen");
             cb_mathAlgorithmType.Items.Add("Laske alennus");
             cb_mathAlgorithmType.Items.Add("Korotuksen laskeminen");
             cb_mathAlgorithmType.Items.Add("Sovellusten laskeminen");
@@ -204,6 +234,10 @@ namespace EconimicMathematics.utils
             cb_mathAlgorithmType.Items.Add("Vertailuprosentin laskeminen");
             cb_mathAlgorithmType.Items.Add("Palkan laskeminen");
             cb_mathAlgorithmType.Items.Add("Laske veroprosentti");
+
+            cb_mathAlgorithmType.Items.Add("Sovellus - Hinnan korotus");
+            cb_mathAlgorithmType.Items.Add("Sovellus - Hinnan alennus");
+            cb_mathAlgorithmType.Items.Add("Sovellus - Vuokran nousu");
         }
 
         private void loadToolTipDelay()
@@ -253,63 +287,175 @@ namespace EconimicMathematics.utils
                 if(cb_mathAlgorithmType.SelectedIndex == 0)
                 {
                     SetCurrentFieldValues("Laske prosentit luvusta", "0%", "0", "0.00%");
-                    reloadDescriptionToolTip("Esimerkki: Laske kuusi prosenttia luvusta 118.");
+                    reloadDescriptionToolTip("Esimerkki. Laske kuusi prosenttia luvusta 118.");
+
+                    reloadInputFieldToolTips(
+                        "Syötä prosentti X",
+                        "Syötä luku Y",
+                        "Prosenttia luvusta Y");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(0);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 1)
                 {
                     SetCurrentFieldValues("Kuinka monta prosenttia X on Y:stä", "0", "0", "0.00%");
-                    reloadDescriptionToolTip("Esimerkki: Montako prosenttia 2400 on 5100.");
+                    reloadDescriptionToolTip("Esimerkki. Montako prosenttia 2400 on 5100.");
+                    
+                    reloadInputFieldToolTips(
+                        "Syötä luku X, pienempi kuin luku Y",
+                        "Syötä luku Y, suurempi kuin luku X",
+                        "Luku X on prosenttia luvusta Y");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(1);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 2)
                 {
-                    SetCurrentFieldValues("Laske perusarvo", "0", "0%", "0.00€");
-                    reloadDescriptionToolTip("Esimerkki: Mistä määrästä 35,65 euroa on 82,3 prosenttia");
+                    SetCurrentFieldValues("Alkuperäisen arvon laskeminen", "0", "0%", "0.00€");
+                    reloadDescriptionToolTip("Esimerkki. Mistä määrästä 35,65 euroa on 82,3 prosenttia");
+
+                    reloadInputFieldToolTips(
+                        "Syötä luku X",
+                        "Syötä prosentti Y",
+                        "Y on prosenttia luvusta X");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(2);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 3)
                 {
-                    SetCurrentFieldValues("Laske alennus", "0", "0%", "0.00€");
-                    reloadDescriptionToolTip("Esimerkki: Esimerkki. Tuotteen hinta on 35,50 € ja siitä saa alennusta 15 %. Laske alennuksen määrä euroina.");
+                    SetCurrentFieldValues("Alennuksen laskeminen", "0", "0%", "0.00€");
+                    reloadDescriptionToolTip("Esimerkki. Tuotteen hinta on 35,50 € ja siitä saa alennusta 15 %.\n" +
+                        "Laske alennuksen määrä euroina.");
+
+                    reloadInputFieldToolTips(
+                        "Syötä tuotteen hinta",
+                        "Syötä alennus prosentti",
+                        "Alennuksen määrä");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(3);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 4)
                 {
                     SetCurrentFieldValues("Korotuksen laskeminen", "0", "0%", "0.00€");
-                    reloadDescriptionToolTip("Esimerkki. Tuotteen hintaa korotetaan 5 %. Laske uusi hinta, kun alkuperäinen hinta on 62,35 €.");
+                    reloadDescriptionToolTip("Esimerkki. Tuotteen hintaa korotetaan 5 %.\n" +
+                        "Laske uusi hinta, kun alkuperäinen hinta on 62,35 €.");
+
+                    reloadInputFieldToolTips(
+                        "Syötä alkuperäinen luku",
+                        "Syötä korotus",
+                        "Uusi hinta");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(4);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 5)
                 {
                     SetCurrentFieldValues("Sovellusten laskeminen", "0%", "0", "0.00€");
-                    reloadDescriptionToolTip("Esimerkki. Kalevi ostaa tv:n alennusmyynnistä 15 prosentin alennuksella ja maksaa siitä 768,92 €." +
-                        "Mikä on tv:n alkuperäinen hinta");
+                    reloadDescriptionToolTip("Esimerkki. Kalevi ostaa tv:n alennusmyynnistä 15 prosentin\n" +
+                        "alennuksella ja maksaa siitä 768,92 €. Mikä on tv:n alkuperäinen hinta");
+
+                    reloadInputFieldToolTips(
+                        "Syötä prosentti luku",
+                        "Syötä alennettu hinta",
+                        "Alkuperäinen hinta");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(5);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 6)
                 {
                     SetCurrentFieldValues("Peräkkäisten muutosten laskeminen", "0", "0%", "0.00€");
-                    reloadDescriptionToolTip("Esimerkki. Kauppias alentaa tuotteiden hintaan ensin 15 % ja sitten vielä 40 %." +
+                    reloadDescriptionToolTip("Esimerkki. Kauppias alentaa tuotteiden hintaan ensin 15 % ja sitten vielä 40 %.\n" +
                         "Paljonko maksaa alennusten jälkeen tuote, jonka alkuperäinen hinta on 522,50 €");
+
+                    reloadInputFieldToolTips(
+                        "Syötä alkuperäinen hinta\n" +
+                        "*Tuotteen hinta päivittyy tähän laskun jälkeen jotta*\n" +
+                        "*Lasku voidaan suorittaa useamman kerran            *",
+                        "Syötä prosentti luku",
+                        "Tuotteen hinta alennuksen jälkeen");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(6);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 7)
                 {
-                    SetCurrentFieldValues("Peräkkäisten muutosten laskeminen", "0", "0", "0.00%");
-                    reloadDescriptionToolTip("Esimerkki. Yrityksen asiakasmäärä kasvoi 1 735 hengestä 1 945 henkeen." +
+                    SetCurrentFieldValues("Muutosprosentin laskeminen", "0", "0", "0.00%");
+                    reloadDescriptionToolTip("Esimerkki. Yrityksen asiakasmäärä kasvoi 1 735 hengestä 1 945 henkeen.\n" +
                         "Montako prosenttia asiakasmäärä kasvoi");
+
+                    reloadInputFieldToolTips(
+                        "Syötä asiakasmäärä X pienempi kuin asiakasmäärä Y",
+                        "Syötä asiakasmäärä Y suurempi kuin asiakasmäärä X",
+                        "Asiakasmäärän ero prosentteina");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(7);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 8)
                 {
-                    SetCurrentFieldValues("Peräkkäisten muutosten laskeminen", "0", "0", "0.00%");
-                    reloadDescriptionToolTip("Esimerkki. Joonalla on 35,60 € ja Riikalla 103,50 €." +
+                    SetCurrentFieldValues("Vertailuprosentin laskeminen", "0", "0", "0.00%");
+                    reloadDescriptionToolTip("Esimerkki. Joonalla on 35,60 € ja Riikalla 103,50 €.\n" +
                         "Montako prosenttia vähemmän Joonalla on rahaa");
+
+                    reloadInputFieldToolTips(
+                        "Syötä summa X pienempi kuin summa Y",
+                        "Syötä summa Y suurempi kuin summa X",
+                        "Summan prosentuaalinen ero prosentteina");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(8);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 9)
                 {
-                    SetCurrentFieldValues("Perusprosenttilaskujen soveltaminen", "0", "0%", "0.00€");
-                    reloadDescriptionToolTip("Esimerkki. Henkilön bruttopalkka on 2 964,31 €/kk ja veroprosentti 22,6." +
+                    SetCurrentFieldValues("Nettopalkan laskeminen", "0", "0%", "0.00€");
+                    reloadDescriptionToolTip("Esimerkki. Henkilön bruttopalkka on 2 964,31 €/kk ja veroprosentti 22,6.\n" +
                         "Laske henkilön nettopalkka.");
+
+                    reloadInputFieldToolTips(
+                        "Syötä bruttopalkka",
+                        "Syötä veroprosentti",
+                        "Nettopalkan suuruus euroina");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(9);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 10)
                 {
-                    SetCurrentFieldValues("Veroprosentin laskeminen", "0", "0", "0.00%");
-                    reloadDescriptionToolTip("Esimerkki. Henkilön bruttopalkka on 3104,84 €/kk ja" +
+                    SetCurrentFieldValues("Laske henkilön veroprosentti", "0", "0", "0.00%");
+                    reloadDescriptionToolTip("Esimerkki. Henkilön bruttopalkka on 3104,84 €/kk ja\n" +
                         "nettopalkka 2198,33 €/kk. Laske henkilön veroprosentti.");
+
+                    reloadInputFieldToolTips(
+                        "Syötä bruttopalkka X suurempi kuin nettopalkka Y",
+                        "Syötä nettopalkka Y pienempi kuin bruttopalkka X",
+                        "Veroprosentti");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(9);
+                }
+                else if(cb_mathAlgorithmType.SelectedIndex == 11)
+                {
+                    SetCurrentFieldValues("Sovellus - Hinnan korotus", "0%", "0", "0.00€");
+                    reloadDescriptionToolTip("Tuotteen hinta on noussut 32,6 % ja on nyt 13,60 €.\n" +
+                        "Montako euroa tuotteen hintaan on tullut korotusta\n" +
+                        "*Voidaan käyttää myös useiden muutosten tarkasteluun*\n" +
+                        "Esimerkki 2. Vuokra on noussut ensin 2 % ja sitten vielä 7 %.\n" +
+                        "Montako euroa vuokra kokonaisuudessaan nousi, kun lopullinen vuokra oli 835,30 €");
+
+                    reloadInputFieldToolTips(
+                        "Syötä prosentti luku",
+                        "Syötä hinta",
+                        "Hintaan lisätty korotus");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(11);
+                }
+                else if(cb_mathAlgorithmType.SelectedIndex == 12)
+                {
+                    SetCurrentFieldValues("Sovellus - Hinnan alennus", "0%", "0", "0.00€");
+                    reloadDescriptionToolTip(" Alennusmyynnissä tuotteen hintaa alennetaan ensin 20 % ja sitten vielä 25 %.\n" +
+                        "Laske tuotteen lopullinen hinta, kun se ennen alennuksia on 129,55 €." +
+                        "Esimerkki 2. Vuokra on noussut ensin 2 % ja sitten vielä 7 %. Montako euroa vuokra kokonaisuudessaan nousi,\n" +
+                        "kun lopullinen vuokra oli 835,30 €");
+
+                    reloadInputFieldToolTips(
+                        "Syötä prosentti luku",
+                        "Syötä hinta",
+                        "Tuotteen lopullinen hinta");
+
+                    rtb_explanation.Text = Explanations.GetExplanation(12);
                 }
 
                 tf_reloadFields_ClickListener();
@@ -326,6 +472,8 @@ namespace EconimicMathematics.utils
                 !ContainsChars.Contains(tf_1_number_1.Text) &&
                 !ContainSymbols.Contains(tf_1_number_1.Text))
             {
+                
+                // 0 Laske prosentit luvusta
                 if(cb_mathAlgorithmType.SelectedIndex == 0)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -333,6 +481,8 @@ namespace EconimicMathematics.utils
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text)),
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_number_1.Text))).ToString("0.00") + "%";
                 }
+                
+                // 1 Kuinka monta prosenttia X on Y:stä
                 else if(cb_mathAlgorithmType.SelectedIndex == 1)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -340,6 +490,8 @@ namespace EconimicMathematics.utils
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text)),
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_number_1.Text))).ToString("0.00") + "%";
                 }
+                
+                // 2 Alkuperäisen arvon laskeminen
                 else if(cb_mathAlgorithmType.SelectedIndex == 2)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -347,6 +499,8 @@ namespace EconimicMathematics.utils
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_number_1.Text)),
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text))).ToString("0.00") + "€";
                 }
+                
+                // 3 Alennuksen laskeminen
                 else if(cb_mathAlgorithmType.SelectedIndex == 3)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -354,6 +508,8 @@ namespace EconimicMathematics.utils
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text)),
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_number_1.Text))).ToString("0.00") + "€";
                 }
+                
+                // 4 Korotuksen laskeminen
                 else if(cb_mathAlgorithmType.SelectedIndex == 4)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -361,6 +517,8 @@ namespace EconimicMathematics.utils
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_number_1.Text)),
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text))).ToString("0.00") + "€";
                 }
+                
+                // 5 Sovellusten laskeminen
                 else if(cb_mathAlgorithmType.SelectedIndex == 5)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -368,6 +526,8 @@ namespace EconimicMathematics.utils
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text)),
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_number_1.Text))).ToString("0.00") + "€";
                 }
+                
+                // 6 Peräkkäisten muutosten laskeminen
                 else if(cb_mathAlgorithmType.SelectedIndex == 6)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -378,6 +538,8 @@ namespace EconimicMathematics.utils
                     tf_1_result_1.Text = result + "€";
                     tf_1_percentage_1.Text = result;
                 }
+                
+                // 7 Muutosprosentin laskeminen
                 else if(cb_mathAlgorithmType.SelectedIndex == 7)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -387,6 +549,8 @@ namespace EconimicMathematics.utils
 
                     tf_1_result_1.Text = result + "%";
                 }
+                
+                // 8 Vertailuprosentin laskeminen
                 else if(cb_mathAlgorithmType.SelectedIndex == 8)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -396,6 +560,8 @@ namespace EconimicMathematics.utils
 
                     tf_1_result_1.Text = result + "%";
                 }
+                
+                // 9 Nettopalkan laskeminen
                 else if(cb_mathAlgorithmType.SelectedIndex == 9)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -405,6 +571,8 @@ namespace EconimicMathematics.utils
 
                     tf_1_result_1.Text = result + "€";
                 }
+                
+                // 10 Laske henkilön veroprosentti
                 else if(cb_mathAlgorithmType.SelectedIndex == 10)
                 {
                     CalculatePercentage calculate = new CalculatePercentage();
@@ -413,6 +581,28 @@ namespace EconimicMathematics.utils
                     Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text))).ToString("0.00");
 
                     tf_1_result_1.Text = result + "%";
+                }
+                
+                // 11 Sovellus - Hinnan korotus
+                else if(cb_mathAlgorithmType.SelectedIndex == 11)
+                {
+                    CalculatePercentage calculate = new CalculatePercentage();
+                    double result = calculate.PriceIncrease(
+                    Convert.ToDouble(DecimalPointer.Convert(tf_1_number_1.Text)),
+                    Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text)));
+
+                    tf_1_result_1.Text = result.ToString("0.00") + "€";
+                }
+
+                // 12 Sovellus - Hinnan alennus
+                else if(cb_mathAlgorithmType.SelectedIndex == 12)
+                {
+                    CalculatePercentage calculate = new CalculatePercentage();
+                    string result = calculate.PriceReduction(
+                    Convert.ToDouble(DecimalPointer.Convert(tf_1_number_1.Text)),
+                    Convert.ToDouble(DecimalPointer.Convert(tf_1_percentage_1.Text))).ToString("0.00");
+
+                    tf_1_result_1.Text = result + "€";
                 }
 
             }

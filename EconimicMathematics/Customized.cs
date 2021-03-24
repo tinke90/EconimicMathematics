@@ -283,25 +283,29 @@ namespace EconimicMathematics
         // Overtime working hours after 2 hours for example
         private double[] GetHours(double hours)
         {
+            Console.WriteLine(hours);
+
             double[] dailyHours;
 
-            
             /*  If working hours has exceeded over 3 hours, calculate +50% and +100%
                 Else if working hours has exceeded below 3 but over daily limit calculate +50%
                 Else mark only working hours...
             */
-            if(hours > Convert.ToDouble(DecimalPointer.Convert(tf_workingHours.Text)) + 2)
+
+            double workingHours = Convert.ToDouble(DecimalPointer.Convert(ContainsChars.Remove(tf_workingHours.Text)));
+
+            if(hours > Convert.ToDouble(DecimalPointer.Convert(ContainsChars.Remove(tf_workingHours.Text))) + 2)
             {
                 dailyHours = new double[3];
                 dailyHours[0] = Convert.ToDouble(DecimalPointer.Convert(tf_workingHours.Text));
                 dailyHours[1] = 2;
-                dailyHours[2] = hours - (Convert.ToDouble(DecimalPointer.Convert(tf_workingHours.Text)) - 2);
+                dailyHours[2] = workingHours - (Convert.ToDouble(DecimalPointer.Convert(tf_workingHours.Text)) - 2);
             }
             else if(hours > Convert.ToDouble(DecimalPointer.Convert(tf_workingHours.Text)))
             {
                 dailyHours = new double[2];
                 dailyHours[0] = Convert.ToDouble(DecimalPointer.Convert(tf_workingHours.Text));
-                dailyHours[1] = hours - Convert.ToDouble(DecimalPointer.Convert(tf_workingHours.Text));
+                dailyHours[1] = workingHours - Convert.ToDouble(DecimalPointer.Convert(tf_workingHours.Text));
             }
             else
             {

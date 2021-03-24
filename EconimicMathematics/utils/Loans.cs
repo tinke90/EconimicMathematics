@@ -355,6 +355,7 @@ namespace EconimicMathematics.utils
                 annualIntrestRate = annualIntrestRate / 100;
 
                 double result = annualIntrestRate * loan;
+                result = Convert.ToDouble(DecimalPointer.Convert(result.ToString("0.00")));
 
                 result = result / timeline;
 
@@ -367,7 +368,7 @@ namespace EconimicMathematics.utils
                 double result = annualIntrestRate * loan;
 
                 result = result / timeline;
-                //result = Convert.ToDouble(DecimalPointer.Convert(result.ToString("0.00")));
+                result = Convert.ToDouble(DecimalPointer.Convert(result.ToString("0.00")));
 
                 double _timeline = amountOfInstallment / result;
 

@@ -21,7 +21,6 @@ namespace EconimicMathematics.utils.vat
 
         private Panel pnl_calculatingVAT;
         private ToolTip tooltip;
-        private Button bt_open_weekly_hour_calculator;
         private Label lb_algoritmType;
         private TextBox tf_result;
         private TextBox tf_productPrice;

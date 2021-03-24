@@ -108,11 +108,36 @@ namespace EconimicMathematics.utils
             return result * 100;
         }
 
+        public double PriceIncrease(double value, double percentage)
+        {
+            percentage = percentage + 100;
+            percentage = GetPercentage(percentage);
+            
+
+            double result = value / percentage;
+
+            return result;
+        }
+
+        public double PriceReduction(double value, double percentage)
+        {
+            percentage = GetPercentage(percentage);
+            percentage = 1 - percentage;
+
+            double result = percentage * value;
+
+            return result;
+        }
+
+
+        // Get generated percentage...
         private double GetPercentage(double percent)
         {
             percent = percent / 100;
 
             return percent;
         }
+
+        
     }
 }

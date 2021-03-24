@@ -30,13 +30,11 @@ namespace EconimicMathematics.utils
             loadToolTips();
             bt_calculateTaxRate();
 
-            lb_nextYear.Visible = false;
-            lb_year.Visible = false;
-            tf_timeline.Visible = false;
-            lb_timeline.Visible = false;
+            LoadTaxableFields(false);
+            LoadTimelineFields(false);
+            LoadYearlyInterestRateFields(false);
         }
 
-        
         private Panel pnl_investment; //
         private Label lb_algoritmType; //
         private TextBox tf_result; //
@@ -54,6 +52,7 @@ namespace EconimicMathematics.utils
         private Label lb_year; //
         private Label lb_taxableInterest; //
         private TextBox tf_taxableInterest; //
+        private TextBox tf_ofYear;
         private ToolTip tooltip;
 
         #region Panel Layout code
@@ -82,6 +81,7 @@ namespace EconimicMathematics.utils
             this.cb_mathAlgorithmType = new ComboBox();
             this.lb_taxableInterest = new Label();
             this.tf_taxableInterest = new TextBox();
+            this.tf_ofYear = new TextBox();
             // 
             // pnl_investment
             // 
@@ -102,6 +102,7 @@ namespace EconimicMathematics.utils
             this.pnl_investment.Controls.Add(this.tf_withdraw);
             this.pnl_investment.Controls.Add(this.bt_calculate);
             this.pnl_investment.Controls.Add(this.cb_mathAlgorithmType);
+            this.pnl_investment.Controls.Add(this.tf_ofYear);
             this.pnl_investment.ForeColor = System.Drawing.Color.Black;
             this.pnl_investment.Location = new System.Drawing.Point(12, 105);
             this.pnl_investment.Name = "pnl_investment";
@@ -191,6 +192,19 @@ namespace EconimicMathematics.utils
             this.lb_annualInterestRate.Size = new System.Drawing.Size(60, 13);
             this.lb_annualInterestRate.TabIndex = 72;
             this.lb_annualInterestRate.Text = "Vuosikorko";
+            // 
+            // tf_ofYear
+            // 
+            this.tf_ofYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tf_ofYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tf_ofYear.ForeColor = System.Drawing.Color.White;
+            this.tf_ofYear.Location = new System.Drawing.Point(270, 73);
+            this.tf_ofYear.Name = "tf_result";
+            this.tf_ofYear.ReadOnly = true;
+            this.tf_ofYear.Size = new System.Drawing.Size(100, 20);
+            this.tf_ofYear.TabIndex = 47;
+            this.tf_ofYear.Text = "0,00€";
+            this.tf_ofYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tf_annualInterestRate
             // 
@@ -332,6 +346,17 @@ namespace EconimicMathematics.utils
             lb_timeline.Visible = visible;
         }
 
+        private void LoadOfYearField(bool visible)
+        {
+            tf_ofYear.Visible = visible;
+        }
+
+        private void LoadTaxableFields(bool visible)
+        {
+            tf_taxableInterest.Visible = visible;
+            lb_taxableInterest.Visible = visible;
+        }
+
         private void LoadYearlyInterestRateFields(bool visible)
         {
             lb_year.Visible = visible;
@@ -343,8 +368,10 @@ namespace EconimicMathematics.utils
         {
             cb_mathAlgorithmType.SelectedIndexChanged += (sender, e) =>
             {
+                LoadTaxableFields(false);
                 LoadTimelineFields(false);
                 LoadYearlyInterestRateFields(false);
+                LoadOfYearField(false);
 
                 if(cb_mathAlgorithmType.SelectedIndex == 0)
                 {
@@ -352,22 +379,37 @@ namespace EconimicMathematics.utils
                     reloadDescriptionToolTip("Esimerkki 1. Henkilöllä on tilillään puolen vuoden ajan 17 000 €. Tilin vuosikorko on 0,25 %." +
                         "Paljonko henkilö saa pääomalleen verotonta korkoa? Lähdevero on 30 %..");
 
+                    LoadOfYearField(true);
+
+                    string[] tips = { "Syötä sijoitettava summa", "Korko puolelta vuodelta.", "Korko kokonaiselta vuodelta"};
+
+                    setTextfieldTooltips(tips);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 1)
                 {
-                    SetCurrentFieldValues("Laske vuotuinen korko", "0", "0", "0.00€");
-                    reloadDescriptionToolTip("Esimerkki 2. Asiakas maksaa kampaajalle 81,35 €." +
-                        "Arvonlisävero on 24 %. Montako euroa asiakas maksaa arvonlisveroa.");
+                    SetCurrentFieldValues("Tilin pääoma 2 vuoden kuluttua", "0", "0", "0.00€");
+                    reloadDescriptionToolTip("Esimerkki 2. Henkilö tallettaa tililleen 20 000 € kahdeksi vuodeksi. Tilin vuosikorko on 0,3 % ja veroton korko" +
+                        "lisätään pääomaan vuosittain. Paljonko tilillä on rahaa kahden vuoden kuluttua? Lähdevero on 30 %.");
 
                     LoadYearlyInterestRateFields(true);
+                    LoadOfYearField(true);
+
+                    string[] tips = { "Syötä talletettu summa", "Veroton korko.", "Korko kokonaiselta vuodelta" };
+
+                    setTextfieldTooltips(tips);
                 }
                 else if(cb_mathAlgorithmType.SelectedIndex == 2)
                 {
-                    SetCurrentFieldValues("Laske kuukausittainen korko", "0", "0", "0.00€");
+                    SetCurrentFieldValues("Laske tilillä olleen pääoman määrä", "0", "0", "0.00€");
                     reloadDescriptionToolTip("Esimerkki 3. Henkilö saa kolmen kuukauden talletukselleen verotonta korkoa 0,12 €." +
                         "Laske tilillä olleen pääoman määrä,kun tilin vuosikorko oli 1,1 % ja lähdevero on 30 %..");
 
                     LoadTimelineFields(true);
+                    LoadTaxableFields(true);
+
+                    string[] tips = { "Syötä veroton korko-osuus", "Pääoman suuruus", "Korko kokonaiselta vuodelta" };
+
+                    setTextfieldTooltips(tips);
                 }
 
                 tf_reloadFields_ClickListener();
@@ -393,6 +435,13 @@ namespace EconimicMathematics.utils
 
             tf_withdraw.Text = inputField_1;
             tf_result.Text = resultField;
+        }
+
+        private void setTextfieldTooltips(string[] tips)
+        {
+            tooltip.SetToolTip(tf_withdraw, tips[0]);
+            tooltip.SetToolTip(tf_result, tips[1]);
+            tooltip.SetToolTip(tf_ofYear, tips[2]);
         }
 
         private void loadToolTips()
@@ -427,7 +476,7 @@ namespace EconimicMathematics.utils
                 DecimalPointer.Convert(RemoveSymbols.Remove(tf_annualInterestRate.Text)));
             double withholdingTax = Convert.ToDouble(
                 DecimalPointer.Convert(RemoveSymbols.Remove(tf_withholdingTax.Text)));
-            int timeline = Convert.ToInt32(ContainsChars.Remove(tf_timeline.Text));
+            double timeline = Convert.ToDouble(ContainsChars.Remove(tf_timeline.Text));
 
             if(cb_mathAlgorithmType.SelectedIndex == 0)
             {
@@ -437,8 +486,10 @@ namespace EconimicMathematics.utils
 
                 double result = annualIntrestRate * investment;
                 result = withholdingTax * result;
+                double ofYear = result;
                 result = result / 2;
 
+                tf_ofYear.Text = ofYear.ToString("0.00") + "€";
                 tf_result.Text = result.ToString("0.00") + "€";
             }
             else if(cb_mathAlgorithmType.SelectedIndex == 1)
@@ -448,13 +499,16 @@ namespace EconimicMathematics.utils
                 withholdingTax = 1 - withholdingTax;
 
                 double result = annualIntrestRate * investment;
+                double yearlyInterest = result;
                 result = withholdingTax * result;
+                
 
                 nextYear++;
                 lb_nextYear.Text = nextYear.ToString();
 
                 tf_result.Text = result.ToString("0.00") + "€";
                 tf_withdraw.Text = (result + investment).ToString("0.00");
+                tf_ofYear.Text = yearlyInterest.ToString("0.00");
             }
             else if(cb_mathAlgorithmType.SelectedIndex == 2)
             {
@@ -464,11 +518,7 @@ namespace EconimicMathematics.utils
 
                 double result = investment / withholdingTax;
 
-                // Rouning the result because task require rounding to get the 
-                // "correct, wanted" result...
-                //result = Convert.ToDouble(DecimalPointer.Convert(result.ToString("0.00")));
-
-                result = Convert.ToInt32(tf_timeline.Text) * result;
+                result = Convert.ToDouble(DecimalPointer.Convert(ContainsChars.Remove(tf_timeline.Text))) * result;
 
                 double fund = result / annualIntrestRate;
 
@@ -479,6 +529,16 @@ namespace EconimicMathematics.utils
                 tf_result.Text = fund.ToString("0.00") + "€";
 
             }
+        }
+
+        private string FilterSymbols(string value)
+        {
+            value = value.Trim();
+            value = value.Replace("€", "");
+            value = value.Replace("%", "");
+            value = value.Replace(" ", "");
+
+            return DecimalPointer.Convert(value).ToString();
         }
 
         private void tf_reloadFields_ClickListener()
