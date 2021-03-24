@@ -24,7 +24,6 @@ namespace EconimicMathematics.utils
         private TextBox tf_1_number_1;
         private TextBox tf_1_percentage_1;
         private ComboBox cb_mathAlgorithmType;
-        private Button bt_loadMathAlgorithm;
         private Panel pnl_explanationPanel;
         private RichTextBox rtb_explanation;
 
@@ -40,7 +39,7 @@ namespace EconimicMathematics.utils
             LoadComboBoxItems();
             loadToolTipDelay();
             bt_calculateTaxRate();
-            bt_loadMathAlgorithm_ClickListener();
+            cb_loadMathAlgorithm_ClickListener();
             tf_fields_ClickListener();
         }
      
@@ -61,14 +60,12 @@ namespace EconimicMathematics.utils
             this.tf_1_percentage_1 = new TextBox();
             this.cb_mathAlgorithmType = new ComboBox();
             this.bt_calculate = new Button();
-            this.bt_loadMathAlgorithm = new Button();
             this.pnl_explanationPanel = new Panel();
             this.rtb_explanation = new RichTextBox();
             // 
             // pnl_taxRate
             // 
             this.pnl_taxRate.BorderStyle = BorderStyle.FixedSingle;
-            this.pnl_taxRate.Controls.Add(this.bt_loadMathAlgorithm);
             this.pnl_taxRate.Controls.Add(this.cb_mathAlgorithmType);
             this.pnl_taxRate.Controls.Add(this.lb_equals_1);
             this.pnl_taxRate.Controls.Add(this.tf_1_result_1);
@@ -112,7 +109,7 @@ namespace EconimicMathematics.utils
             this.lb_equals_1.BackColor = System.Drawing.Color.Transparent;
             this.lb_equals_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_equals_1.ForeColor = System.Drawing.Color.White;
-            this.lb_equals_1.Location = new System.Drawing.Point(250, 105);
+            this.lb_equals_1.Location = new System.Drawing.Point(250, 72);
             this.lb_equals_1.Name = "lb_equals_1";
             this.lb_equals_1.Size = new System.Drawing.Size(25, 20);
             this.lb_equals_1.TabIndex = 50;
@@ -124,7 +121,7 @@ namespace EconimicMathematics.utils
             this.tf_1_result_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tf_1_result_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tf_1_result_1.ForeColor = System.Drawing.Color.White;
-            this.tf_1_result_1.Location = new System.Drawing.Point(275, 105);
+            this.tf_1_result_1.Location = new System.Drawing.Point(275, 72);
             this.tf_1_result_1.Name = "tf_1_result_1";
             this.tf_1_result_1.ReadOnly = true;
             this.tf_1_result_1.Size = new System.Drawing.Size(100, 20);
@@ -138,7 +135,7 @@ namespace EconimicMathematics.utils
             this.lb_algoritmType.BackColor = System.Drawing.Color.Transparent;
             this.lb_algoritmType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_algoritmType.ForeColor = System.Drawing.Color.White;
-            this.lb_algoritmType.Location = new System.Drawing.Point(22, 85);
+            this.lb_algoritmType.Location = new System.Drawing.Point(22, 52);
             this.lb_algoritmType.Name = "lb_algoritmType";
             this.lb_algoritmType.Size = new System.Drawing.Size(177, 17);
             this.lb_algoritmType.TabIndex = 48;
@@ -149,7 +146,7 @@ namespace EconimicMathematics.utils
             this.tf_1_number_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tf_1_number_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tf_1_number_1.ForeColor = System.Drawing.Color.White;
-            this.tf_1_number_1.Location = new System.Drawing.Point(150, 105);
+            this.tf_1_number_1.Location = new System.Drawing.Point(150, 72);
             this.tf_1_number_1.Name = "tf_1_number_1";
             this.tf_1_number_1.Size = new System.Drawing.Size(100, 20);
             this.tf_1_number_1.TabIndex = 47;
@@ -161,7 +158,7 @@ namespace EconimicMathematics.utils
             this.tf_1_percentage_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tf_1_percentage_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tf_1_percentage_1.ForeColor = System.Drawing.Color.White;
-            this.tf_1_percentage_1.Location = new System.Drawing.Point(25, 105);
+            this.tf_1_percentage_1.Location = new System.Drawing.Point(25, 72);
             this.tf_1_percentage_1.Name = "tf_1_percentage_1";
             this.tf_1_percentage_1.Size = new System.Drawing.Size(100, 20);
             this.tf_1_percentage_1.TabIndex = 46;
@@ -193,18 +190,6 @@ namespace EconimicMathematics.utils
             this.cb_mathAlgorithmType.Size = new System.Drawing.Size(194, 21);
             this.cb_mathAlgorithmType.TabIndex = 56;
             this.cb_mathAlgorithmType.Text = "Laskukaavat";
-            // 
-            // bt_loadMathAlgorithm
-            // 
-            this.bt_loadMathAlgorithm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_loadMathAlgorithm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_loadMathAlgorithm.ForeColor = System.Drawing.Color.White;
-            this.bt_loadMathAlgorithm.Location = new System.Drawing.Point(25, 44);
-            this.bt_loadMathAlgorithm.Name = "bt_loadMathAlgorithm";
-            this.bt_loadMathAlgorithm.Size = new System.Drawing.Size(194, 23);
-            this.bt_loadMathAlgorithm.TabIndex = 57;
-            this.bt_loadMathAlgorithm.Text = "Lataa laskukaava";
-            this.bt_loadMathAlgorithm.UseVisualStyleBackColor = true;
             
             this.pnl_taxRate.ResumeLayout(false);
             this.pnl_taxRate.PerformLayout();
@@ -280,9 +265,9 @@ namespace EconimicMathematics.utils
             tf_1_result_1.Text = resultField;
         }
 
-        private void bt_loadMathAlgorithm_ClickListener()
+        private void cb_loadMathAlgorithm_ClickListener()
         {
-            bt_loadMathAlgorithm.Click += (sender, e) =>
+            cb_mathAlgorithmType.SelectedIndexChanged += (sender, e) => 
             {
                 if(cb_mathAlgorithmType.SelectedIndex == 0)
                 {

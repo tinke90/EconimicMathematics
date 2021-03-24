@@ -198,7 +198,7 @@ namespace EconimicMathematics.utils
             this.tf_ofYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tf_ofYear.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tf_ofYear.ForeColor = System.Drawing.Color.White;
-            this.tf_ofYear.Location = new System.Drawing.Point(270, 73);
+            this.tf_ofYear.Location = new System.Drawing.Point(270, 72);
             this.tf_ofYear.Name = "tf_result";
             this.tf_ofYear.ReadOnly = true;
             this.tf_ofYear.Size = new System.Drawing.Size(100, 20);
@@ -223,7 +223,7 @@ namespace EconimicMathematics.utils
             this.lb_equals_1.BackColor = System.Drawing.Color.Transparent;
             this.lb_equals_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_equals_1.ForeColor = System.Drawing.Color.White;
-            this.lb_equals_1.Location = new System.Drawing.Point(125, 73);
+            this.lb_equals_1.Location = new System.Drawing.Point(125, 72);
             this.lb_equals_1.Name = "lb_equals_1";
             this.lb_equals_1.Size = new System.Drawing.Size(25, 20);
             this.lb_equals_1.TabIndex = 50;
@@ -236,7 +236,7 @@ namespace EconimicMathematics.utils
             this.lb_algoritmType.BackColor = System.Drawing.Color.Transparent;
             this.lb_algoritmType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_algoritmType.ForeColor = System.Drawing.Color.White;
-            this.lb_algoritmType.Location = new System.Drawing.Point(22, 53);
+            this.lb_algoritmType.Location = new System.Drawing.Point(22, 52);
             this.lb_algoritmType.Name = "lb_algoritmType";
             this.lb_algoritmType.Size = new System.Drawing.Size(171, 17);
             this.lb_algoritmType.TabIndex = 48;
@@ -247,7 +247,7 @@ namespace EconimicMathematics.utils
             this.tf_result.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tf_result.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tf_result.ForeColor = System.Drawing.Color.White;
-            this.tf_result.Location = new System.Drawing.Point(150, 73);
+            this.tf_result.Location = new System.Drawing.Point(150, 72);
             this.tf_result.Name = "tf_result";
             this.tf_result.ReadOnly = true;
             this.tf_result.Size = new System.Drawing.Size(100, 20);
@@ -260,7 +260,7 @@ namespace EconimicMathematics.utils
             this.tf_withdraw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tf_withdraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tf_withdraw.ForeColor = System.Drawing.Color.White;
-            this.tf_withdraw.Location = new System.Drawing.Point(25, 73);
+            this.tf_withdraw.Location = new System.Drawing.Point(25, 72);
             this.tf_withdraw.Name = "tf_withdraw";
             this.tf_withdraw.Size = new System.Drawing.Size(100, 20);
             this.tf_withdraw.TabIndex = 46;
